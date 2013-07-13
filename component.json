@@ -1,0 +1,27 @@
+{
+  "name": "cell",
+  "repo": "jkroso/cell",
+  "description": "A class for reifying identity",
+  "version": "0.1.0",
+  "keywords": [
+    "entity",
+    "ref",
+    "pointer",
+    "identity",
+    "state",
+    "cell"
+  ],
+  "dependencies": {
+    "jkroso/emitter": "*"
+  },
+  "development": {
+    "visionmedia/mocha": "1.12.0",
+    "jkroso/serve": "1.4.3",
+    "chaijs/chai": "1.7.2",
+    "chaijs/chai-spies": "0.5.1"
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "cell",
+  "version": "0.1.0",
+  "description": "A class for reifying identity",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jkroso/cell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jkroso/cell/issues"
+  },
+  "keywords": ["entity","ref","pointer","identity","state","cell"],
+  "author": "Jake Rosoman",
+  "license": "MIT"
+}
