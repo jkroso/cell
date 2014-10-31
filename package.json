@@ -1,6 +1,6 @@
 {
   "name": "cell",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A class for reifying identity",
   "dependencies": {},
   "devDependencies": {
