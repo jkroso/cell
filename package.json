@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "description": "A class for reifying identity",
   "dependencies": {},
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jkroso/cell.git"
+  "devDependencies": {
+    "assert": "jkroso/assert",
+    "serve": "jkroso/serve",
+    "hydro-html": "*",
+    "hydro-bdd": "*",
+    "hydro-dot": "*",
+    "hydro": "*"
   },
-  "bugs": {
-    "url": "https://github.com/jkroso/cell/issues"
-  },
-  "keywords": ["entity","ref","pointer","identity","state","cell"],
+  "repository": "git://github.com/jkroso/cell.git",
+  "keywords": ["entity","ref","pointer","identity","state","cell","atom"],
   "author": "Jake Rosoman",
   "license": "MIT"
 }

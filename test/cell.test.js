@@ -1,35 +1,33 @@
 
-var chai = require('./chai')
-  , Cell = require('..')
+var Cell = require('..')
 
-describe('cell', function(){
-	var cell
-	var spy
-	beforeEach(function(){
-		cell = new Cell(1)
-		spy = chai.spy()
-	})
+describe('set', function(){
+  it('should return the new value', function(){
+    assert(new Cell(1).set(2) == 2)
+  })
 
-	describe('get()', function(){
-		it('should return the `value`', function(){
-			cell.get().should.equal(1)
-		})
-	})
+  it('should replace `value`', function(){
+    var cell = new Cell(1)
+    assert(cell.set(2) == 2)
+    assert(cell.value == 2)
+  })
 
-	describe('set(value)', function(){
-		it('should return `this`', function(){
-			cell.set(2).should.equal(cell)
-		})
+  it('should notify listeners"', function(done){
+    var cell = new Cell(1)
+    cell.addListener(function(newValue, oldValue){
+      assert(oldValue == 1)
+      assert(newValue == 2)
+      done()
+    })
+    cell.set(2)
+  })
 
-		it('should replace `value`', function(){
-			cell.get().should.equal(1)
-			cell.set(2).get().should.equal(2)
-		})
-
-		it('should emit "change"', function(){
-			cell.on('change', spy)
-			cell.set(2)
-			spy.should.have.been.called.once.with(2, 1)
-		})
-	})
+  it('should handle multiple listeners', function(){
+    var cell = new Cell(1)
+    var n = 1
+    cell.addListener(function(){ n++ })
+    cell.addListener(function(){ n++ })
+    cell.set(2)
+    assert(n == 3)
+  })
 })

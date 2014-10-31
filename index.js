@@ -1,38 +1,44 @@
 
-var Emitter = require('emitter')
+function Cell(value){
+  this.value = value
+  this.onChange = undefined
+}
+
+/**
+ * Replace the cell's value and notify listeners
+ *
+ * @param {X} value
+ * @return {X} value
+ */
+
+Cell.prototype.set = function(newValue){
+  var oldValue = this.value
+  this.value = newValue
+  switch (typeof this.onChange) {
+  case 'function':
+    this.onChange(newValue, oldValue)
+    break
+  case 'object':
+    var array = this.onChange
+    for (var i = 0, len = array.length; i < len; i++) {
+      array[i].call(this, newValue, oldValue)
+    }
+  }
+  return newValue
+}
+
+/**
+ * Set a function to be invoked whenever the value of
+ * the Cell changes
+ *
+ * @param {Function} fn
+ * @return {Function} fn
+ */
+
+Cell.prototype.addListener = function(fn){
+  if (this.onChange == null) return this.onChange = fn
+  if (typeof this.onChange == 'function') return this.onChange = [this.onChange, fn]
+  return this.onChange = this.onChange.concat(fn)
+}
 
 module.exports = Cell
-
-function Cell(value){
-	this.value = value
-}
-
-/**
- * mixin emitter
- */
-
-Emitter(Cell.prototype)
-
-/**
- * read the cell's value
- * 
- * @return {x}
- */
-
-Cell.prototype.get = function(){
-	return this.value
-}
-
-/**
- * replace the cell's value
- * 
- * @event {change} (newValue, oldValue)
- * @param {x} value
- * @return {this}
- */
-
-Cell.prototype.set = function(value){
-	var old = this.value
-	this.value = value
-	return this.emit('change', value, old)
-}

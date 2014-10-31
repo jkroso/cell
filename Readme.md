@@ -1,26 +1,29 @@
 
-# entity
+# Cell
 
-  A class for reifying identity
+  A class for reifying identity inspired by clojure's `atom`
 
 ## Installation
 
-_With [component](//github.com/component/component), [packin](//github.com/jkroso/packin) or [npm](//github.com/isaacs/npm)_  
-
-	$ {package mananger} install jkroso/entity
+With [packin](//github.com/jkroso/packin) `packin install jkroso/cell`
 
 then in your app:
 
 ```js
-var entity = require('entity')
+var Cell = require('cell')
 ```
 
 ## API
 
-- [entity()](#entity)
+### Cell(initialValue)
 
-### entity()
-
-## Running the tests
-
-Just run `make`. It will install and start a development server leaving the tests waiting for you [at](http://localhost:3000/test)
+```js
+var cell = new Cell(1)
+cell.value // => 1
+cell.addListener(function(newValue, oldValue){
+  newValue // => 2
+  oldValue // => 1
+})
+cell.set(2) // => 2
+cell.value  // => 2
+```
