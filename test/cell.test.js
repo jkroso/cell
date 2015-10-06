@@ -31,3 +31,28 @@ describe('set', function(){
     assert(n == 3)
   })
 })
+
+describe('removeListener', function(){
+  it('no listeners', function() {
+    var cell = new Cell(1)
+    cell.removeListener(Cell)
+    assert(cell.onChange === undefined)
+  })
+
+  it('single listener', function() {
+    var cell = new Cell(1)
+    cell.addListener(Cell)
+    cell.removeListener(Cell)
+    assert(cell.onChange === undefined)
+  })
+
+  it('multiple listeners', function(){
+    var cell = new Cell(1)
+    cell.addListener(Cell)
+    cell.addListener(Boolean)
+    cell.removeListener(Cell)
+    assert(cell.onChange === Boolean)
+    cell.removeListener(Boolean)
+    assert(cell.onChange === undefined)
+  })
+})

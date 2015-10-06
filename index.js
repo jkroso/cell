@@ -1,4 +1,3 @@
-
 function Cell(value){
   this.value = value
   this.onChange = undefined
@@ -39,6 +38,24 @@ Cell.prototype.addListener = function(fn){
   if (this.onChange == null) return this.onChange = fn
   if (typeof this.onChange == 'function') return this.onChange = [this.onChange, fn]
   return this.onChange = this.onChange.concat(fn)
+}
+
+/**
+ * Remove a listening function
+ *
+ * @param {Function} fn
+ */
+
+Cell.prototype.removeListener = function(fn) {
+  switch (typeof this.onChange) {
+  case 'function':
+    this.onChange = undefined
+    break
+  case 'object':
+    this.onChange.splice(this.onChange.indexOf(fn), 1)
+    if (this.onChange.length < 2) this.onChange = this.onChange[0]
+    break
+  }
 }
 
 module.exports = Cell
